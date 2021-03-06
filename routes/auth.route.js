@@ -17,7 +17,7 @@ router.post( //так приложение отвечает на post-запро
         check("email","Некорректный email").isEmail(), //проверка emal,в случае чего,выдается оишбка из 2-го аргумента.IsEmail - встроенный валидатор в либе express-validatorб
         check("password","Минимальная длина пароля - 6 символов").isLength({min:6}),
     ],
-    async (req, res)=>{ //конкатенируем /api/auth/ с register
+    async (req, res) => { //конкатенируем /api/auth/ с register
         try {
             const errors = validationResult(req)
             //вывод ошибок
@@ -29,6 +29,8 @@ router.post( //так приложение отвечает на post-запро
             }
 
             const {email, password} = req.body
+            // console.log(req.body)
+            // console.log("email:",email, "password:",password)
 
             const condidate = await User.findOne({email})
 

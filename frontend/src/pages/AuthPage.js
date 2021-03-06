@@ -6,18 +6,21 @@ import '../scss/_auth.scss';
 import { useHttp } from '../hooks/http.hook';
 
 export const AuthPage = () =>{
+
     const {loading, error, request} = useHttp()
 
     const [form, setForm] = useState (
         {email:"", password:""}
     )
     const changeHandler = event => {
-        setForm({...form , [event.target.name]:event.target.value})
+        setForm({...form, [event.target.name]:event.target.value})
     }
 
     const registerHandle = async () => {
         try{
             const data = await request("/api/auth/register", "POST", {...form})
+            console.log({...form})
+            console.log(data)
         }catch(e){
             console.log(e.message)
         }
@@ -33,11 +36,11 @@ export const AuthPage = () =>{
                         <div className="main__content_auth-fields">
                             <div className="fileds__email field">
                                 <h3>Paste here your email</h3>
-                                <TextField onChange={changeHandler} className="form__input" id="standard-search" label="email" type="search" />
+                                <TextField name="email" onChange={changeHandler} className="form__input" id="standard-search" label="email" type="email" />
                             </div>
                             <div className="fileds__password field">
                                 <h3>Paste here your password</h3>
-                                <TextField onChange={changeHandler} className="form__input" id="standard-search" label="password" type="password" />
+                                <TextField name="password" onChange={changeHandler} className="form__input" id="standard-search" label="password" type="password" />
                             </div>
                         </div>
                         <div className="main__content_auth-buttons">
