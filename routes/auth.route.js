@@ -29,8 +29,6 @@ router.post( //так приложение отвечает на post-запро
             }
 
             const {email, password} = req.body
-            // console.log(req.body)
-            // console.log("email:",email, "password:",password)
 
             const condidate = await User.findOne({email})
 

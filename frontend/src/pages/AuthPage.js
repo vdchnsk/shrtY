@@ -1,9 +1,13 @@
 import React ,{useState, useEffect} from 'react'
+import {connect} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { formatMs, makeStyles } from '@material-ui/core/styles';
 import '../scss/_auth.scss';
 import { useHttp } from '../hooks/http.hook';
+import {Notification} from "../components/Alert"
+// import { connect } from '../../../routes/auth.route';
+import { showAlert } from '../redux/actions';
 
 export const AuthPage = () =>{
 
@@ -18,6 +22,7 @@ export const AuthPage = () =>{
 
     const registerHandle = async () => {
         try{
+            props.showAlert("132")
             const data = await request("/api/auth/register", "POST", {...form})
             console.log({...form})
             console.log(data)
@@ -29,6 +34,7 @@ export const AuthPage = () =>{
     return(
         <div className="content__auth">
             <main className="main">
+                   <Notification text={props.alert} />
                 <div className="main__header">
                     <h1 className="main__header-title">Log in to cut</h1>
                 </div>
@@ -52,3 +58,9 @@ export const AuthPage = () =>{
         </div>
     )
 }
+const dispatchedAlert = MapDispatchToProps(showAlert)
+
+const mapStateToProps = state =>({
+    alert:state.app.alert
+})
+export default connect(null, dispatchedAlert)
