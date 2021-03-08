@@ -1,5 +1,5 @@
 import React ,{useState, useEffect} from 'react'
-import {connect} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { formatMs, makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import {Notification} from "../components/Alert"
 import { showAlert } from '../redux/actions';
 
 export const AuthPage = () =>{
-
+    const dispatchALert = useDispatch()
     const {loading, error, request} = useHttp()
 
     const [form, setForm] = useState (
@@ -22,19 +22,16 @@ export const AuthPage = () =>{
 
     const registerHandle = async () => {
         try{
-            props.showAlert("132")
+            dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/register", "POST", {...form})
-            console.log({...form})
-            console.log(data)
         }catch(e){
             console.log(e.message)
         }
     }
-
     return(
         <div className="content__auth">
             <main className="main">
-                   <Notification text={props.alert} />
+                   <Notification text={alert} />
                 <div className="main__header">
                     <h1 className="main__header-title">Log in to cut</h1>
                 </div>
@@ -58,9 +55,3 @@ export const AuthPage = () =>{
         </div>
     )
 }
-const dispatchedAlert = MapDispatchToProps(showAlert)
-
-const mapStateToProps = state =>({
-    alert:state.app.alert
-})
-export default connect(null, dispatchedAlert)

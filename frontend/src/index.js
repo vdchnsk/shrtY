@@ -10,16 +10,12 @@ import { Provider } from 'react-redux'
 
 
 
-const store = createStore(rootReducer, compose(
-  applyMiddleware(
-    thunk
-    )
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-));
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-        <Provider store ={store}>
+        {/* провайдер дает возможность всему остальному приложению пользоватся стором */}
+        <Provider store ={store}> 
           <App />
       </Provider>
   </React.StrictMode>,

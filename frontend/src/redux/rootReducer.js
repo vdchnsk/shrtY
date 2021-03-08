@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
-import {alertReducer} from './alertReducer'
+import { alertReducer } from './alertReducer'
 
 //ГЛОБАЛЬНЫЙ REDUCER
 export const rootReducer = combineReducers({
     alert: alertReducer,
 })
+console.log({alert})
