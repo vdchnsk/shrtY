@@ -1,17 +1,21 @@
 import React ,{ useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector} from 'react-redux'
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 
 import { useHttp } from '../hooks/http.hook';
 import { Notification } from "../components/Alert"
 import { showAlert } from '../redux/actions';
 import '../scss/_auth.scss';
+import { SHOW_ALERT } from '../redux/types';
 
 
 export const AuthPage = () =>{
-    const dispatchALert = useDispatch()
+    const alert = useSelector((state)=> state.alert)
+    const dispatch = useDispatch()
+
     const {loading, error, request} = useHttp()
 
     const [form, setForm] = useState (
@@ -26,7 +30,7 @@ export const AuthPage = () =>{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/register", "POST", {...form})
         }catch(e){
-            console.log(e.message)
+            dispatch({type:SHOW_ALERT})
             
         }
     }
@@ -36,7 +40,7 @@ export const AuthPage = () =>{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
         }catch(e){
-            console.log(e.message)
+            dispatch({type:SHOW_ALERT})
         }
     }
     
