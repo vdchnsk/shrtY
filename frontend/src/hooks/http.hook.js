@@ -8,7 +8,7 @@ export const useHttp = () => {
         setLoading(true)
 
         try{
-            if(body){
+            if ( body ){
                 body = JSON.stringify(body) //приводим body к строке
                 headers["Content-Type"] = "application/json" //доабление хедера запросу
             }

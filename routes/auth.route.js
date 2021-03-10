@@ -42,21 +42,21 @@ router.post( //так приложение отвечает на post-запро
                 email:email,
                 password:hashedPassword
             })
-            
-            await user.save() //добавление нового юзера
-            res.status(201).json({message:"Пользьователь создан"})
+            await user.save() //добавление нового юзера в бд
+            return res.status(201).json({message:"Пользьователь создан"})
         }catch (e){
             res.status(500).json({message:"что-то пошло не так,попрбуейте снова..." })
         }
 })
 
 //конкатенируем /api/auth/ с login
-router.post('/login', 
+router.post(
+    '/login', 
     [
         check('email', 'Введите корректный email').normalizeEmail().isEmail(),
         check('password','Введите пароль').exists()
     ],
-    async (reg, res)=>{
+    async (req, res)=>{
 
     try{
         const errors = validationResult(req)
