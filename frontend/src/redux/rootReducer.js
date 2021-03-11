@@ -3,6 +3,5 @@ import { alertReducer } from './alertReducer'
 
 //ГЛОБАЛЬНЫЙ REDUCER
 export const rootReducer = combineReducers({
-    alert: alertReducer,
+    alerts:alertReducer,
 })
-console.log({alert})

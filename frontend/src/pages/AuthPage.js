@@ -7,14 +7,13 @@ import Button from '@material-ui/core/Button';
 
 import { useHttp } from '../hooks/http.hook';
 import { Notification } from "../components/Alert"
-import { showAlert } from '../redux/actions';
 import '../scss/_auth.scss';
 import { SHOW_ALERT } from '../redux/types';
-
+import {showAlert} from '../redux/alertActions'
 
 export const AuthPage = () =>{
-    const alert = useSelector((state)=> state.alert)
     const dispatch = useDispatch()
+    const alert = useSelector(state=> state.alert)
 
     const {loading, error, request} = useHttp()
 
@@ -30,8 +29,7 @@ export const AuthPage = () =>{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/register", "POST", {...form})
         }catch(e){
-            dispatch({type:SHOW_ALERT})
-            
+            dispatch(showAlert("Неверно введены данные для регистрации!"))
         }
     }
     
@@ -40,7 +38,7 @@ export const AuthPage = () =>{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
         }catch(e){
-            dispatch({type:SHOW_ALERT})
+            dispatch(showAlert("Неверно введены данные для авторизации!"))
         }
     }
     
@@ -49,7 +47,7 @@ export const AuthPage = () =>{
     return(
         <div className="content__auth">
             <main className="main">
-                   <Notification text={alert} />
+                   <Notification />
                 <div className="main__header">
                     <h1 className="main__header-title">Log in to cut</h1>
                 </div>
