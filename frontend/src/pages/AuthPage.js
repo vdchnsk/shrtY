@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect } from 'react'
+import React ,{ useState, useEffect, useMemo} from 'react'
 import { useDispatch , useSelector} from 'react-redux'
 
 import TextField from '@material-ui/core/TextField';
@@ -12,9 +12,9 @@ import { SHOW_ALERT } from '../redux/types';
 import {showAlert} from '../redux/alertActions'
 
 export const AuthPage = () =>{
+    console.log("rendered")
     const dispatch = useDispatch()
-    const alert = useSelector(state=> state.alert)
-
+    const alertState = useSelector(state=> state.alerts) //redux global state value
     const {loading, error, request} = useHttp()
 
     const [form, setForm] = useState (
@@ -28,8 +28,8 @@ export const AuthPage = () =>{
         try{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/register", "POST", {...form})
-        }catch(e){
-            dispatch(showAlert("Неверно введены данные для регистрации!"))
+        } catch(e) {
+            dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
         }
     }
     
@@ -37,13 +37,11 @@ export const AuthPage = () =>{
         try{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
-        }catch(e){
-            dispatch(showAlert("Неверно введены данные для авторизации!"))
+        } catch(e) {
+            dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
         }
     }
     
-
-
     return(
         <div className="content__auth">
             <main className="main">

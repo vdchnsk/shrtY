@@ -5,7 +5,6 @@ import { SHOW_ALERT, HIDE_ALERT} from "./types"
 const initState = {
     text:"",
     type:"warning",
-    visibility:"hiiden"
 }
 
 export const alertReducer = (state = initState, action) =>{

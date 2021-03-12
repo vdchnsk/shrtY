@@ -24,7 +24,7 @@ router.post( //так приложение отвечает на post-запро
             if(!errors.isEmpty()){
                 return res.status(400).json({
                     errors:errors.array(),
-                    message:"Некорректные данные при регистрации"
+                    // message:"Некорректные данные при регистрации"
                 })
             }
 
@@ -33,7 +33,7 @@ router.post( //так приложение отвечает на post-запро
             const condidate = await User.findOne({email})
 
             if (condidate){
-                return res.status(400).json({messag:"такой пользователь уже сущестует"})
+                return res.status(400).json({message:"Такой пользователь уже сущестует"})
             }
 
             const hashedPassword = await bcrypt.hash(password, 12) //хэщируем пароль
@@ -45,7 +45,7 @@ router.post( //так приложение отвечает на post-запро
             await user.save() //добавление нового юзера в бд
             return res.status(201).json({message:"Пользьователь создан"})
         }catch (e){
-            res.status(500).json({message:"что-то пошло не так,попрбуейте снова..." })
+            res.status(500).json({message:"Что-то пошло не так,попрбуейте снова..." })
         }
 })
 
@@ -63,14 +63,14 @@ router.post(
         if(!errors.isEmpty()){
             return res.status(400).json({
                 errors:errors.array(),
-                message:"Некорректные данные при авторизации"
+                // message:"Некорректные данные при авторизации"
             })
         }
     const {email,password} = req.body
     const user = await User.findOne({email})
 
     if (!user){
-        return res.status(400).json({message:"такого пользвователя не существует!"})
+        return res.status(400).json({message:"Такого пользвователя не существует!"})
     }
     
     const isMatch = await bcrypt.compare(password , user.password)//сравнение введенного пользователем пароля с имеющимся в бд 
@@ -84,7 +84,7 @@ router.post(
     res.status(200).json({JsonWebToken, userId:user.id})
 
     } catch (e){
-        res.status(500).json({message:"что-то пошло не так,попрбуейте снова..." })
+        res.status(500).json({message:"Что-то пошло не так,попрбуейте снова..." })
     }
 })
 
