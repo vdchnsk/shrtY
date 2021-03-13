@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux'
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { rootReducer } from './redux/rootReducer';
-import { Provider } from 'react-redux'
-import { alertReducer } from './redux/alertReducer';
+import { alertReducer } from './redux/reducers/alertReducer';
 
 
 

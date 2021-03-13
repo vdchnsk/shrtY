@@ -10,9 +10,9 @@ export const useAuth = () =>{
     const login = useCallback((JsonWebToken, id)=>{
         setToken(JsonWebToken)
         setUserId(id)
-
-        localStorage.setItem(StorageName, JSON.stringify(userId, token))
+        localStorage.setItem(StorageName, JSON.stringify(id, JsonWebToken))
     },[])
+
     const logout = useCallback(()=>{
         //очищаем state
         setToken(null)
@@ -22,10 +22,10 @@ export const useAuth = () =>{
         localStorage.removeItem(StorageName)
     },[])
 
-    useEffect(()=>{
-        const data = JSON.parse(localStorage.getItem(StorageName))
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem(StorageName)) // JSON.parse приводит строку к объекту
         if(data && data.token){
-            login(data.token, data.userId, )
+            login(data.token, data.userId)
         }
     },[login])
 

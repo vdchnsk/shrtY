@@ -1,21 +1,22 @@
-import React ,{ useState, useEffect, useMemo} from 'react'
+import React ,{ useState, useMemo} from 'react'
 import { useDispatch , useSelector} from 'react-redux'
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
-
 import { useHttp } from '../hooks/http.hook';
 import { Notification } from "../components/Alert"
 import '../scss/_auth.scss';
 import { SHOW_ALERT } from '../redux/types';
-import {showAlert} from '../redux/alertActions'
+import {showAlert} from '../redux/actions/alertActions'
+import { authtReducer } from '../redux/reducers/authReducer';
+import { changeAuthStatusLogin } from '../redux/actions/authActions'
+import { useAuth } from '../hooks/auth.hook';
 
 export const AuthPage = () =>{
-    console.log("rendered")
     const dispatch = useDispatch()
-    const alertState = useSelector(state=> state.alerts) //redux global state value
+    const globalState = useSelector(state=> state) //redux global state value
     const {loading, error, request} = useHttp()
+    const {token, login, logout, userId} = useAuth()
+
 
     const [form, setForm] = useState (
         {email:"", password:""}
@@ -37,6 +38,10 @@ export const AuthPage = () =>{
         try{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
+            console.log(data.JsonWebToken)
+            login(data.JsonWebToken , data.userId)
+            dispatch(changeAuthStatusLogin(data.JsonWebToken , data.userId))
+            
         } catch(e) {
             dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
         }
