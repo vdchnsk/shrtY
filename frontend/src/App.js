@@ -7,9 +7,9 @@ import {useRoutes} from './routes'
 
 function App() {
   const authState = useSelector(state=> state.auth) //redux global state value
-  console.log(authState)
-  const token = authState.token
-  // const {token, login, logout, userId} = useAuth()
+  // const token = authState.token
+  const {token, login, logout, userId} = useAuth()
+  console.log(token)
 
   const isAuthenticated = !!token // "!!" приводит к boolean
   const routes = useRoutes(isAuthenticated) //передаем значение isAuthenticated в функциию useRoutes в роуатх

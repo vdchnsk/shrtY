@@ -38,10 +38,10 @@ export const AuthPage = () =>{
         try{
             // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
-            console.log(data.JsonWebToken)
             login(data.JsonWebToken , data.userId)
-            dispatch(changeAuthStatusLogin(data.JsonWebToken , data.userId))
-            
+            console.log("token and id:",data.JsonWebToken , data.userId)
+            // dispatch(changeAuthStatusLogin(data.JsonWebToken , data.userId))
+            window.location.reload();
         } catch(e) {
             dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
         }
