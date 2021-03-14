@@ -9,8 +9,10 @@ import {AuthPage} from './pages/AuthPage'
 export const useRoutes = isAuthenticated =>{ //получаем информациб о том,авторизован ли юзер,перенаправляем его соответсвенно
     if(isAuthenticated){
         return(
-            <Switch> //Sitch позволяет рендерить компонент по path
-                <Route path="/links"exact> //exact значтит,что строго именно этот path должен быть указан
+            // Switch позволяет рендерить компонент по path
+            <Switch>
+                {/* //exact значтит,что строго именно этот path должен быть указан */}
+                <Route path="/links"exact> 
                     <ListOfShortenedLinks/>
                 </Route>
                 <Route path="/create"exact>

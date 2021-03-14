@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { changeAuthStatusLogin } from '../redux/actions/authActions'
 
 const StorageName = 'UserData'
-const dispatch = useDispatch
 
 export const useAuth = () =>{
+    
     const [token, setToken] = useState(null)
     const [userId, setUserId] = useState(null)
 
@@ -32,7 +32,7 @@ export const useAuth = () =>{
     },[login])
 
 
-    dispatch(changeAuthStatusLogin(token, userId))// диспатчим изменения в глобальное состояние (на всякий случай)
+    // dispatch(changeAuthStatusLogin(token, userId))// диспатчим изменения в глобальное состояние (на всякий случай)
 
     return {login, logout, token, userId}
 }

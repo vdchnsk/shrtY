@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
+import { NavBar } from './components/NavBar'
 import { useAuth } from './hooks/auth.hook'
 import {useRoutes} from './routes'
 
@@ -16,6 +17,8 @@ function App() {
   
   return (
     <BrowserRouter>
+    {/* Если пользователь авторизован,то мы показываем ему navbar */}
+      {isAuthenticated && <NavBar/>}
         <div className="App">
           {routes}
         </div>
