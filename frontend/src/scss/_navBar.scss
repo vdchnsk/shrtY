@@ -17,11 +17,9 @@
         }
         .navBar__nav{
             display: flex;
-            width: 20%;
 
             .navBar__nav-list{
                 display: block;
-                width: 34%;
                 font-size: 1.1rem;
                 text-align: center;
                 padding: 5px;
@@ -34,6 +32,7 @@
                     align-items: center;
                 }
                 .nav-list__linkIcon{
+                    margin-left: 5px;
                     margin-top: 3px;
                     font-size: 1.2rem;
                 }

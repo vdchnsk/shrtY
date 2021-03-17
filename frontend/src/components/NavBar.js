@@ -9,13 +9,13 @@ import '../scss/_navBar.scss'
 
 
 export const NavBar = ()=>{
-    // const history = useHistory()
+    const history = useHistory()
     const {token, login, logout, userId} = useAuth()
-
+    
     const logOutHandler = event => {
         event.preventDefault()
         logout()
-        // history.push("/")
+        history.push("/")
         window.location.reload();
     }
     return(
