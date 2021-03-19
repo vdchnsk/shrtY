@@ -1,0 +1,26 @@
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrapper__cutLink-main{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        .wrapper__cutLink__content{
+            height: 50vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .wrapper__cutLink__content-input{
+                margin-right: 20px;
+                width: 50%;
+            }
+            .wrapper__cutLink__content-button{
+                margin-top: 16px;
+            }
+        }
+    }
+}
