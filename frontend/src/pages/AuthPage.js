@@ -1,4 +1,4 @@
-import React ,{ useState, useMemo} from 'react'
+import React ,{ useState, useMemo, useEffect} from 'react'
 import { useDispatch , useSelector} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,10 @@ export const AuthPage = () =>{
     const globalState = useSelector(state=> state) //redux global state value
     const {loading, error, request} = useHttp()
     const {token, login, logout, userId} = useAuth()
-
+    
+    // useEffect(()=>{
+    //     console.log("auth state",globalState.auth)
+    // }, [globalState.auth])
 
     const [form, setForm] = useState (
         {email:"", password:""}
@@ -27,7 +30,6 @@ export const AuthPage = () =>{
 
     const registerHandle = async () => {
         try{
-            // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/register", "POST", {...form})
         } catch(e) {
             dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
@@ -36,11 +38,10 @@ export const AuthPage = () =>{
     
     const logInHandle = async () => {
         try{
-            // dispatchALert({type:"SHOW_ALERT"})
             const data = await request("/api/auth/login", "POST", {...form})
             login(data.JsonWebToken , data.userId)
-            dispatch(changeAuthStatusLogin(data.JsonWebToken , data.userId))
-            window.location.reload();
+            dispatch(changeAuthStatusLogin(data.JsonWebToken , data.userId , true))
+            // window.location.reload();
         } catch(e) {
             dispatch(showAlert(e.message )) //отображаем текст в алерте из бекенда
         }
@@ -56,11 +57,9 @@ export const AuthPage = () =>{
                 <div className="main__content_auth">
                         <div className="main__content_auth-fields">
                             <div className="fileds__email field">
-                                <h3>Paste here your email</h3>
                                 <TextField value={form.email} name="email" onChange={changeHandler} className="form__input" id="standard-search" label="email" type="email" />
                             </div>
                             <div className="fileds__password field">
-                                <h3>Paste here your password</h3>
                                 <TextField value={form.password} name="password" onChange={changeHandler} className="form__input" id="standard-search" label="password" type="password" />
                             </div>
                         </div>

@@ -13,7 +13,7 @@ const initState = {
 
 export const authtReducer = (state = initState, action) =>{
     switch(action.type){
-        case CHANGE_AUTHON_LOGIN:return {state, token:action.token , userId:action.userId}
+        case CHANGE_AUTHON_LOGIN: return {state, token:action.token , userId:action.userId , isAuthenticated:action.isAuthenticated}
         default: return state
     }
 } 

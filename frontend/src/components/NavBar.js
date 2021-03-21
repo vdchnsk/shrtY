@@ -5,13 +5,14 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LinkIcon from '@material-ui/icons/Link';
 import CreateIcon from '@material-ui/icons/Create';
 import '../scss/_navBar.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAuthStatusLogin } from '../redux/actions/authActions';
 
 
 
 export const NavBar = ()=>{
     const history = useHistory()
-    const {token, login, logout, userId} = useAuth()
-    
+    const {logout} = useAuth()
     const logOutHandler = event => {
         event.preventDefault()
         logout()

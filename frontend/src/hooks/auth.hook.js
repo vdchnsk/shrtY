@@ -1,6 +1,6 @@
 import {useState, useCallback, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
-import { changeAuthStatusLogin } from '../redux/actions/authActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeAuthStatusLogin, changeAuthStatusLogout } from '../redux/actions/authActions'
 
 const StorageName = 'UserData'
 
@@ -8,6 +8,8 @@ export const useAuth = () =>{
     
     const [token, setToken] = useState(null)
     const [userId, setUserId] = useState(null)
+    // const authState = useSelector(state=> state.auth) //redux global state value
+    // const dispatch = useDispatch()
 
     const login = useCallback((JsonWebToken, id)=>{
         setToken(JsonWebToken)
@@ -25,14 +27,14 @@ export const useAuth = () =>{
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(StorageName)) // JSON.parse приводит строку к объекту
-        console.log("data was requiered")
+        // console.log("data was requiered")
         if(data && data.token){
             login(data.token, data.userId)
         }
     },[login])
 
 
-    // dispatch(changeAuthStatusLogin(token, userId))// диспатчим изменения в глобальное состояние (на всякий случай)
-
+    // dispatch(changeAuthStatusLogout(token, userId , true))
+    // console.log(authState)
     return {login, logout, token, userId}
 }

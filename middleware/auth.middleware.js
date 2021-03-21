@@ -8,7 +8,7 @@ module.exports = (req, res, next) =>{
     }
 
     try {
-        const token = req.headers.authorization.splt("")[1] // забираем первый элемент из массива (токен)\
+        const token = req.headers.authorization.splt("")[1] // забираем первый элемент из массива (токен)
         if (!token){
             res.status(401).json({message:"Нет токена!"})
         }
