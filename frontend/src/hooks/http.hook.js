@@ -12,8 +12,9 @@ export const useHttp = () => {
                 body = JSON.stringify(body) //приводим body к строке
                 headers["Content-Type"] = "application/json" //доабление хедера запросу
             }
+            
             const responce = await fetch(url, {method, body, headers})
-
+            // repoonce !ok - все ломается тут
             const data = await responce.json()
 
             if(!responce.ok){
@@ -28,7 +29,7 @@ export const useHttp = () => {
             throw e
         }
     }, [])
-    const clearErrors = () => setError(null)
+    const clearErrors = () => setError(null, [])
 
     
     return {loading , error , request, clearErrors}

@@ -10,9 +10,12 @@ const router = Router()
 router.post(
     '/cut', authMiddleware, //authMiddleware - middleware , который декодирует jwt и отправляет нам id , в противном случае выдает ошибку о том, что jwt нет
     async(req, res) => {
+        console.log("got here")
         try{
             const baseUrl = config.get('baseUrl')
+
             const {from} = req.body
+  
             const uniqueCode = shortid.generate() //ShortId creates amazingly short non-sequential url-friendly unique id's
 
             const existing = await Link.findOne({ from })

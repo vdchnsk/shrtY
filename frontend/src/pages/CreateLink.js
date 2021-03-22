@@ -2,22 +2,23 @@ import React, { useState } from 'react'
 import { useDispatch , useSelector} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import "../scss/_createLink.scss"
 import { useHttp } from '../hooks/http.hook';
+import { useHistory } from 'react-router';
+import "../scss/_createLink.scss"
 
 export const CreateLink = () =>{
+    const hisotory = useHistory()
     const dispatch = useDispatch()
     const globalState = useSelector(state=> state) //redux global state value
-    // console.log("global state",globalState.auth)
+
     const {request} = useHttp()
     const [link , setLink ] = useState("")
 
 
     const cutHandler = async () =>{
-        console.log({link})
         try{
-            const data = await request('api/link/cut' , "POST", {from: link})
-            console.log(data)
+            const data = await request('/api/link/cut' , 'POST', {from: link} , {uthorization:`Bearer ${globalState.auth.token}`})
+            console.log("cut data:",data)
 
         } catch (e) {
             console.log(e.message)

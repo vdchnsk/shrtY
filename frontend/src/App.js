@@ -20,7 +20,7 @@ function App() {
     fromGlobalState: !!authState.token
   }
   let isAuthenticated = null
-  console.log({...tokens})
+  // console.log({...tokens})
   
   if( tokens.fromGlobalState == true ){
     isAuthenticated = true
@@ -28,7 +28,7 @@ function App() {
     isAuthenticated = true
   }
   const routes = useRoutes(isAuthenticated) //передаем значение isAuthenticated в функциию useRoutes в роуатх
-  console.log("isAuthenticated:",isAuthenticated)
+  // console.log("isAuthenticated:",isAuthenticated)
 
   return (
     <BrowserRouter>
