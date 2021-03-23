@@ -1,25 +1,20 @@
-import React ,{ useState, useMemo, useEffect} from 'react'
+import React ,{ useState} from 'react'
 import { useDispatch , useSelector} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHttp } from '../hooks/http.hook';
 import { Notification } from "../components/Alert"
 import '../scss/_auth.scss';
-import { SHOW_ALERT } from '../redux/types';
 import {showAlert} from '../redux/actions/alertActions'
-import { authtReducer } from '../redux/reducers/authReducer';
 import { changeAuthStatusLogin } from '../redux/actions/authActions'
 import { useAuth } from '../hooks/auth.hook';
 
 export const AuthPage = () =>{
     const dispatch = useDispatch()
-    const globalState = useSelector(state=> state) //redux global state value
-    const {loading, error, request} = useHttp()
-    const {token, login, logout, userId} = useAuth()
+    // const globalState = useSelector(state=> state) //redux global state value
+    const {loading, request} = useHttp()
+    const { login } = useAuth()
     
-    // useEffect(()=>{
-    //     console.log("auth state",globalState.auth)
-    // }, [globalState.auth])
 
     const [form, setForm] = useState (
         {email:"", password:""}

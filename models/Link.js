@@ -1,7 +1,7 @@
 const {Schema , model, Types} = require("mongoose")
 
 //схема объектов коллекции
-const links = new Schema({
+const schema = new Schema({
     from:{
         type:String,
         required:true,

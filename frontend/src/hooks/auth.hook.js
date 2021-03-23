@@ -1,15 +1,12 @@
 import {useState, useCallback, useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeAuthStatusLogin, changeAuthStatusLogout } from '../redux/actions/authActions'
 
 const StorageName = 'UserData'
 
 export const useAuth = () =>{
     
     const [token, setToken] = useState(null)
+    const [ready, setReady] = useState(false)
     const [userId, setUserId] = useState(null)
-    // const authState = useSelector(state=> state.auth) //redux global state value
-    // const dispatch = useDispatch()
 
     const login = useCallback((JsonWebToken, id)=>{
         setToken(JsonWebToken)
@@ -31,10 +28,11 @@ export const useAuth = () =>{
         if(data && data.token){
             login(data.token, data.userId)
         }
+        setReady(true)
     },[login])
 
 
     // dispatch(changeAuthStatusLogout(token, userId , true))
     // console.log(authState)
-    return {login, logout, token, userId}
+    return {login, logout, token, userId , ready}
 }

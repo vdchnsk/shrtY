@@ -1,4 +1,4 @@
-import {CHANGE_AUTHON_LOGIN, CHANGE_AUTHON_LOGOUT} from "../types"
+import { CHANGE_AUTHON_LOGIN } from "../types"
 
 
 const nothing = ()=>{} //just dont ask

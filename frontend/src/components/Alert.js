@@ -1,6 +1,6 @@
 import React from 'react';
 import Alert from '@material-ui/lab/Alert';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 export const Notification = ({text}) =>{

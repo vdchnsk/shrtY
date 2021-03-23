@@ -5,8 +5,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LinkIcon from '@material-ui/icons/Link';
 import CreateIcon from '@material-ui/icons/Create';
 import '../scss/_navBar.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import { changeAuthStatusLogin } from '../redux/actions/authActions';
 
 
 
@@ -22,11 +20,11 @@ export const NavBar = ()=>{
     return(
         <nav className="navBar">
         <div className="navBar__wrapper">
-            <span className="navBar__logo">Link Cutter</span>
+            <NavLink className="navBar__logo"to="/create">Link Cutter </NavLink>
             <ul className="navBar__nav">
-                <li className="navBar__nav-list"> <NavLink to="/create" > Create <CreateIcon className="nav-list__linkIcon" /> </NavLink>  </li>
-                <li className="navBar__nav-list"> <NavLink to="/links" > My links <LinkIcon className="nav-list__linkIcon" /> </NavLink> </li>
-                <li className="navBar__nav-list"> <a href="/" onClick={ logOutHandler }> Log out  <ExitToAppIcon className="nav-list__linkIcon" /> </a> </li>
+                <li className="navBar__nav-list"> <NavLink to="/create"> Create <CreateIcon className="nav-list__linkIcon"/> </NavLink>  </li>
+                <li className="navBar__nav-list"> <NavLink to="/links"> My links <LinkIcon className="nav-list__linkIcon"/> </NavLink> </li>
+                <li className="navBar__nav-list"> <a href="/" onClick={ logOutHandler }> Log out  <ExitToAppIcon className="nav-list__linkIcon"/> </a> </li>
             </ul>
         </div>
     </nav>
