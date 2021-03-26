@@ -12,13 +12,13 @@ export const useRoutes = isAuthenticated =>{ //получаем информац
             // Switch позволяет рендерить компонент по path
             <Switch>
                 {/* //exact значтит,что строго именно этот path должен быть указан */}
-                <Route path="/links"exact> 
+                <Route path="/links" exact> 
                     <ListOfShortenedLinks/>
                 </Route>
-                <Route path="/create"exact>
+                <Route path="/create" exact>
                     <CreateLink/>
                 </Route>
-                <Route path="/detail/:id"exact>
+                <Route path="/detail/:id" exact>
                     <DetailsPage/> 
                 </Route>
                 <Redirect to="/create"/>

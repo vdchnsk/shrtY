@@ -1,0 +1,26 @@
+a{
+    text-decoration: none;
+    color:rgb(0, 0, 0); ;
+}
+.linkInfo-main{
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .linkInfo__content{
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        background-color: rgb(230, 230, 230);
+        .linkInfo__content__text{
+            color: rgb(99, 99, 99);
+            text-decoration: none;
+            padding: 7px;
+        }
+    }
+}

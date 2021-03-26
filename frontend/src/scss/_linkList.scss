@@ -1,0 +1,53 @@
+.lieAlert-main{
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .lieAlert__content{
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(230, 230, 230);
+        width: 35%;
+        padding: 4%;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        .contentText{
+            padding: 20px;
+            text-align: center;
+            color: rgb(99, 99, 99);
+            font-size: 1.1rem;
+        }
+    }
+}
+.dotes .dotes_firstDote{
+    opacity: 100%;
+    animation: 1s dote infinite ;
+    -webkit-animation: 1s dote infinite ;
+}
+.dotes .dotes_secondDote{
+    opacity: 100%;
+    animation: 2s dote infinite ;
+    -webkit-animation: 2s dote infinite ;
+}
+.dotes .dotes_thirdDote{
+    opacity: 100%;
+    animation: 3s dote infinite;
+    -webkit-animation: 3s dote infinite;
+}
+
+@keyframes dote {
+    0%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}

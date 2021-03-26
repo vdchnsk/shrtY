@@ -11,12 +11,14 @@ import '../scss/_navBar.scss'
 export const NavBar = ()=>{
     const history = useHistory()
     const {logout} = useAuth()
+
     const logOutHandler = event => {
         event.preventDefault()
         logout()
         history.push("/")
         window.location.reload();
     }
+
     return(
         <nav className="navBar">
         <div className="navBar__wrapper">

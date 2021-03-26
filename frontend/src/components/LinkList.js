@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import "../scss/_linkList.scss"
+import { UrListIsEmpty } from './UrListIsEmpry';
 
 const useStyles = makeStyles({
   table: {
@@ -14,9 +15,16 @@ const useStyles = makeStyles({
   },
 });
 
-export const  LinkList = ({links}) => {
+export const LinkList = ({links}) => {
+    console.log(links.length)
     const classes = useStyles();
-    console.log("renderte")
+
+    if (!links.length){
+        return (
+            <UrListIsEmpty/>
+        )
+    }
+
     return (
         <TableContainer className="mainTab-links" component={Paper}>
             <Table className={classes.table} size="small" aria-label="a dense table">
