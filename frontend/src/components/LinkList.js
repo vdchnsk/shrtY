@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 });
 
 export const LinkList = ({links}) => {
-    console.log(links.length)
     const classes = useStyles();
 
     if (!links.length){
@@ -38,7 +37,7 @@ export const LinkList = ({links}) => {
                 </TableHead>
                 <TableBody>
                     {links.map((link) => (
-                        <TableRow className="table__content">
+                        <TableRow key = {link._id} className="table__content">
                             <TableCell align="center">{link.to}</TableCell>
                             <TableCell align="center">{link.from}</TableCell>
                             <TableCell align="center">{link.numberOfCLicks}</TableCell>

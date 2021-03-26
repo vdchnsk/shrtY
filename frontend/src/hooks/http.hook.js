@@ -12,7 +12,7 @@ export const useHttp = () => {
                 body = JSON.stringify(body) //приводим body к строке
                 headers["Content-Type"] = "application/json" //доабление хедера запросу
             }
-            
+
             const responce = await fetch(url, {method, body, headers})
             
             const data = await responce.json()

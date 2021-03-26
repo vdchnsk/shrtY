@@ -15,7 +15,7 @@ router.get(
             res.json(link) // возвращаем link в json
 
         } catch (e){
-            res.status(500).json({message:"Что-то пошло не так,попрбуейте снова..." })
+            res.status(500).json({message: e.message})
         }
     }
 )
@@ -23,12 +23,11 @@ router.get(
 router.post(
     '/cut', authMiddleware, //authMiddleware - middleware , который декодирует jwt и отправляет нам id , в противном случае выдает ошибку о том, что jwt нет
     async(req, res) => {
-
         try{
             const baseUrl = config.get('baseUrl')
 
             const {from} = req.body
-  
+
             const uniqueCode = shortid.generate() //ShortId creates amazingly short non-sequential url-friendly unique id's
 
             const existing = await Link.findOne({ from })
@@ -36,17 +35,16 @@ router.post(
             if (existing){
                 return res.json({link: existing})
             }
-            const to = baseUrl + '/t/' + uniqueCode
-
-            const link = new Link({
-                uniqueCode , to , from , owner:req.user.userId //req.user задается в middleware
-            })
+            const to = baseUrl + '/t/' + uniqueCode // '/t/' - значит "to"
+            
+            const link = new Link ({from ,to ,uniqueCode , owner:req.user.userId} ) //req.user задается в middleware
 
             await link.save()
+            
             res.status(201).json({link}) // объект по схеме Link
 
         } catch (e){
-            res.status(500).json({message:"Что-то пошло не так,попрбуейте снова..." })
+            res.status(500).json({message:e.message })
         }
     }
 )

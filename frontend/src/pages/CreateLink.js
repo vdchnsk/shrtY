@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch , useSelector} from 'react-redux'
+import { useSelector} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHttp } from '../hooks/http.hook';
@@ -8,7 +8,6 @@ import "../scss/_createLink.scss"
 
 export const CreateLink = () =>{
     const history = useHistory()
-    const dispatch = useDispatch()
     const globalState = useSelector(state=> state) //redux global state value
 
     const {request} = useHttp()
@@ -18,7 +17,7 @@ export const CreateLink = () =>{
     const cutHandler = async () =>{
         try{
             const data = await request('/api/link/cut' , 'POST', {from: link} , {authorization:`Bearer ${globalState.auth.token}`})
-            history.push(`/detail/${data.link._id}`)
+            history.push(`/detail/${data.link._id}`) //переводим на страницу с подробной информацией о ссылке
         } catch (e) {
             console.log(e.message)
         }
