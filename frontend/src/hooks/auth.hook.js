@@ -1,8 +1,10 @@
 import {useState, useCallback, useEffect} from 'react'
+import { useSelector } from 'react-redux'
 
 const StorageName = 'UserData'
 
 export const useAuth = () =>{
+    const globalState = useSelector(state => state)
     
     const [token, setToken] = useState(null)
     const [ready, setReady] = useState(false)
@@ -15,11 +17,15 @@ export const useAuth = () =>{
     },[])
 
     const logout = useCallback(()=>{
-        //очищаем state
+        //очищаем логальный state 
         setToken(null)
         setUserId(null)
         //очищаем local storage
         localStorage.removeItem(StorageName)
+        //очищаем глобальный стейт
+        globalState.auth.token = null
+        globalState.auth.userId = null
+        globalState.auth.isAuthenticated = false
     },[])
 
     useEffect(() => {

@@ -78,7 +78,7 @@ router.post(
     }
     
     //формирование jwt
-    const JsonWebToken = jwt.sign({userId:user.id}, config.get('jwtSecret'),  {expiresIn: '1h'}) //параметры: 1)данные,которые шифруем 2)секретный ключ для шифровки 3)время жизни токена
+    const JsonWebToken = jwt.sign({userId:user.id}, config.get('jwtSecret'),  {expiresIn: '7000d'}) //параметры: 1)данные,которые шифруем 2)секретный ключ для шифровки 3)время жизни токена (7000d по той причине, что я мудак и не хочу реализовывать его обновление P.S.это очень плохо для security , делать так нельзя)
     //ответ юзеру
     res.status(200).json({JsonWebToken, userId:user.id})
 

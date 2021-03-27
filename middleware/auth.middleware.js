@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const config = require("config")
 
-
+// const {logout} = useAuth() 
 module.exports = (req, res, next) =>{
     if (req === "OPTIONS") { //req === "OPTIONS" позволяет проверить , досутпн сервер или нет
         return next()
@@ -12,8 +12,9 @@ module.exports = (req, res, next) =>{
         if (!token){
             return res.status(401).json({message:"Нет токена!"})
         }
-
+        console.log(jwt)
         const decoded = jwt.verify(token , config.get('jwtSecret'))
+        
         
         req.user = decoded
         next()

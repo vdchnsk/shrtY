@@ -1,3 +1,4 @@
+import { FolderOpen } from '@material-ui/icons'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
@@ -6,7 +7,6 @@ import { NavBar } from './components/NavBar'
 import { useAuth } from './hooks/auth.hook'
 import { changeAuthStatusLogin } from './redux/actions/authActions'
 import {useRoutes} from './routes'
-
 
 function App() {
   const authState = useSelector(state=> state.auth) //redux global state value

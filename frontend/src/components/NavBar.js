@@ -15,7 +15,7 @@ export const NavBar = ()=>{
     const logOutHandler = event => {
         event.preventDefault()
         logout()
-        history.push("/")
+        history.push("")
         window.location.reload();
     }
 
