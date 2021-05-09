@@ -12,6 +12,7 @@
 ### Fornt-end
    - React
    - Redux
+   - SCSS
    - Material UI
 ### Back-end
    - Express
