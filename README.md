@@ -1,4 +1,20 @@
-# link-shortener
- link-shortener using MERN
- 
- quote api - https://rapidapi.com/andruxnet/api/random-famous-quotes?endpoint=592c903de4b05d38a42e9e3e
+# link_shortener
+
+**Version 1.0.0 **
+
+📃 Advanced link shortener
+
+## 👨‍💻 Contributors
+
+- Valeriy Dichansky <dichansky@gmail.com>
+
+## ⚙ Technologies
+### Fornt-end
+   - React
+   - Redux
+   - Material UI
+### Back-end
+   - Express
+   - Mongoose
+### DB
+   - MongoDB
