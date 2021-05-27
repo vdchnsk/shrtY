@@ -1,6 +1,5 @@
 {
     "port":5000,
     "jwtSecret":"secret",
-    "mongoUrl":"mongodb+srv://dichansky:1qaz0plm@cluster0.3axp8.mongodb.net/link_cutter_dbr?retryWrites=true&w=majority",
     "baseUrl":"http://localhost:5000"
 }
